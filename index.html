@@ -1,10 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 	<meta charset="UTF-8">
 	<title>Document</title>
+	<title>mygithub</title>
+<style>
+*{margin:0;padding:0}
+.top{background:#ccc;width:1000px;height:3000px;margin:0 auto;}
+.k1{width:100%;height:500px;background:#aa0;}
+.k2{width:100%;height:500px;background:#489;}
+.k3{width:100%;height:500px;background:#a45;}
+a{width:60px;height:60px;font-size:20px;position:fixed;right:60px;bottom:70px;background:#888;text-align:center;color:#fff;display:none;}
+a:hover{background:blue}
+</style>	
 </head>
 <body>
 	<h1>hello world</h1>
+
+<div class="top">
+  <div class="k1"></div>
+  <div class="k2"></div>
+  <div class="k3"></div>
+  <div class="k1"></div>
+  <div class="k2"></div>
+  <div class="k3"></div>
+  <div class="k1"></div>
+  <div class="k2"></div>
+  <div class="k3"></div>
+</div>
+<a id="btn" href="javascript:;">回到顶部</a>
+<script type="">
+window.onload=function(){
+     var obtn = document.getElementById("btn");
+     var time = null;
+     //var clientHeight = document.documentElement.clientHeight;//界面高度获取
+     //滚动触发  显示隐藏按钮
+         window.onscroll = function(){
+         	var sTop = document.documentElement.scrollTop || document.body.scrollTop;
+            if (sTop>=500) { //自定义高度触发、clientHeight为自动
+            	obtn.style.display = "block";
+            } else {
+            	obtn.style.display = "none";
+            }
+         }
+         	obtn.onclick = function(){
+         		//清除二次定时器
+         		clearInterval(time);
+         		//定时器
+         		time = setInterval(function(){
+       			//顶部高度
+     			var sTop = document.documentElement.scrollTop || document.body.scrollTop;
+     			console.log(sTop);
+     		   document.documentElement.scrollTop=document.body.scrollTop = Math.floor(sTop/2);
+                 if (sTop==0) {
+     		clearInterval(time);
+                }
+          	},50);    
+          }	
+     }
+
+</script>
 </body>
 </html>
