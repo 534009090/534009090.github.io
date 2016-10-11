@@ -1,40 +1,163 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>My</title>
-	<link rel="icon" href="xjak.github.io/images/ic.jpg">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="icon" href="http://xjak.github.io/images/ic.jpg">
+<title>响应式布局</title>
+
+<!-- Bootstrap core CSS -->
+<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
 <style>
- *{margin:0;padding:0;}
- body{background-color:#ECE4E4}
- ul,li{list-style:none;}
- .warp{width:800px;margin:0 auto;background:#fff;}
- .con{width:100%}
- .con img{width:100%;}
- .nav{width:100%;}
- .nav .nav-l{float:left;}
- .nav .img1{float:left;width:78px;margin:5px 27px}
- .nav .nav-l ul{margin-left:0px}
- .nav .nav-l li{float:left;margin:7px 17px;}
- .nav a{color:#606060;text-decoration:none;font-weight:bold;list-style:none;font-size:13px}
- .nav a:hover{color:orange;}
- .nav-r img{margin-left:170px;width:180px;}
+body {
+  background: #ccc;
+}
+.stop {
+	margin-top: -20px;
+}
+.sheight {
+	height: 180px;
+}
+.item>img{width:100%;}
 </style>
 </head>
 <body>
-<div class="warp">
-    <div class="nav">
-       
-        <div class="nav-l">
-            <ul>
-               <li><a href="#">首页</a></li>
-               <li><a href="#">价值</a></li>
-               <li><a href="#">功能</a></li>
-               <li><a href="#">专家</a></li>
-               <li><a href="#">价格</a></li>
-            </ul>
-        </div>
-	</div>  
+<div class="navbar-wrapper">
+  <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+        <a class="navbar-brand" href="#">分享•音乐</a> </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#">主页</a></li>
+          <li><a href="#about">关于</a></li>
+          <li><a href="#contact">登录</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 </div>
+<!-- Carousel -->
+<div id="myCarousel" class="carousel slide stop" data-ride="carousel"> 
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+    <li data-target="#myCarousel" data-slide-to="1"></li>
+    <li data-target="#myCarousel" data-slide-to="2"></li>
+    <li data-target="#myCarousel" data-slide-to="3"></li>
+  </ol>
+  <div class="carousel-inner" role="listbox">
+    <div class="item active"> <img src="1.jpg">
+    </div>
+    <div class="item"> <img src="2.jpg">
+    </div>
+    <div class="item"> <img src="3.jpg">      
+    </div>
+    <div class="item"> <img src="4.jpg">
+    </div>
+  </div>
+  <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev"> <span class="glyphicon glyphicon-chevron-left"></span> <span class="sr-only">Previous</span> </a> <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next"> <span class="glyphicon glyphicon-chevron-right"></span> <span class="sr-only">Next</span> </a> </div>
+<!-- /.carousel -->
+<hr class="featurette-divider">
+<div class="container">
+  <div class="row ">
+    <div class="col-6 col-sm-6 col-lg-4">
+      <div class="thumbnail"> <img  class="img-circle" data-src="holder.js/300x300" src="http://p4.music.126.net/GHnrbdpjL26ZQxhbrl1stA==/6024224209305884.jpg?param=130y130">
+        <div class="caption">
+          <h3>Tobu</h3>
+          <p class="sheight">Tobu（个性化的写为7obu），本名 托马斯·波克维斯基斯（21岁），来自于拉脱维亚的音乐制作人。他自2010年起开始进行音乐的磨练和创作。同时也是第三人称表达的忠实爱好者。他的作品首首让人心动，风格既可清新自然也可激情澎湃。</p>
+          <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="http://music.163.com/outchain/player?type=2&id=28830411&auto=0&height=66"></iframe>
+        </div>
+      </div>
+    </div>
+    <div class="col-6 col-sm-6 col-lg-4">
+      <div class="thumbnail"> <img class="img-circle" src="http://p4.music.126.net/P1ac-TWkFzjDqcvl5_oK7Q==/881808325476577.jpg?param=130y130">
+        <div class="caption">
+          <h3>DJ OKAWARI</h3>
+          <p class="sheight"> Dj Okawari来自于日本静冈县，曲风为各种chillout，例如jazz-hiphop和chill-hop，有一种十分空灵自然的唯美感。主要作品：在2008年发行了Debut，名为Diorama，中文翻译过来便是西洋镜的意思，也就如同专辑名称一样，专辑里的每一首歌都十分具有画面感，美妙的钢琴配合轻快的鼓点造就了一张唯美的专辑。</p>
+          <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="http://music.163.com/outchain/player?type=2&id=406238&auto=0&height=66"></iframe>
+        </div>
+      </div>
+    </div>
+    <div class="col-6 col-sm-6 col-lg-4">
+      <div class="thumbnail"> <img class="img-circle" src="http://p3.music.126.net/GHspaji-l6W7rBT0e4PFrg==/2529976259373492.jpg?param=130y130">
+        <div class="caption">
+          <h3>好妹妹乐队</h3>
+          <p class="sheight">好妹妹乐队 是由两个热情洋溢青春逼人的社会青年组成。“好妹妹乐队”的成员是两个清新干净的大男生：随性不羁的浪客秦昊和憨态可掬的张小厚。他们健康快乐积极向上，活泼进取热情开朗。他们英俊潇洒美丽婉约。是21世纪不可多得的大龄文艺青年。</p>
+          <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="http://music.163.com/outchain/player?type=2&id=399354289&auto=0&height=66"></iframe>
+        </div>
+      </div>
+    </div>
+    <div class="col-6 col-sm-6 col-lg-4 ">
+      <div class="thumbnail"> <img class="img-circle" src="http://p3.music.126.net/fhTee0GORPpAo_WCOLVxqw==/2555265022980841.jpg?param=130y130">
+        <div class="caption">
+          <h3>Nightwish</h3>
+          <p class="sheight"> Nightwish（夜愿，台湾译名“日暮颂歌”）是一支成立于1996年来自芬兰的剧院金属（美声金属）乐队。乐队大多数歌曲的词由键盘手托马斯·霍洛帕尼所撰写，前任女主唱塔雅·图仑尼的声音使得夜愿扬名国际。在2005年10月塔雅·图伦尼被开除后，他们找到了Anette接任，并且也增加了贝斯手马可·希耶塔拉的声部。夜愿的音乐风格除了剧院金属和新金属，还有其他音乐元素。托马斯曾经形容他们的音乐为“用女声表现的旋律金属”。</p>
+          <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="http://music.163.com/outchain/player?type=2&id=21311956&auto=0&height=66"></iframe>
+        </div>
+      </div>
+    </div>
+    <div class="col-6 col-sm-6 col-lg-4">
+      <div class="thumbnail"> <img class="img-circle" src="http://p3.music.126.net/Emaq161QZY318PV2fRibfQ==/6019826162752844.jpg?param=130y130">
+        <div class="caption">
+          <h3>DEPAPEPE</h3>
+          <p class="sheight"> DEPAPEPE是一个2002年建立的日本二人吉他组合。小组成员分别是德冈庆也和三浦拓也。DEPAPEPE 2002年11月由德冈庆也及三浦拓也二人合组而成的DEPAPEPE 当时从神户到大阪、 京都以及东京，随着街头表演的经验累积，DEPAPEPE瞬间开启了知名度及人气。在他们正是发布自己的专辑之前，曾发行过3张小制作的独立专辑，而且总销量达到十万张。2005年DEPAPEPE发行了他们第一张正式专辑《Let's Go!!!》。目前签约于日本新力音乐公司。</p>
+          <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="http://music.163.com/outchain/player?type=2&id=22688472&auto=0&height=66"></iframe>
+        </div>
+      </div>
+    </div>
+    <div class="col-6 col-sm-6 col-lg-4">
+      <div class="thumbnail"> <img class="img-circle" src="http://p3.music.126.net/5dxDAiqgeIzKfydIehOZlg==/5896680859766191.jpg?param=130y130">
+        <div class="caption">
+          <h3>姚贝娜</h3>
+          <p class="sheight"> 姚贝娜，英文名Bella，1981年9月26日出生于湖北省武汉市，毕业于中国音乐学院声歌系，2008年获得第十三届CCTV青年歌手电视大奖赛流行唱法金奖，成为青歌赛历史上首位“百分冠军”；同年参加北京奥运会闭幕式的演唱。。2014年再次登上中央电视台马年春晚，并在零点钟声敲响前献唱压轴歌曲《天耀中华》，被观众票选为最喜爱的节目。4月26日获得MusicRadio中国TOP排行榜年度最佳女歌手。2015年2月14日，当选首届“感动江城”2014年度人物。</p>
+          <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="http://music.163.com/outchain/player?type=2&id=28095355&auto=0&height=66"></iframe>
+        </div>
+      </div>
+    </div>
+    <div class="col-6 col-sm-6 col-lg-4">
+      <div class="thumbnail"> <img class="img-circle" src="http://p4.music.126.net/z8nlSERm9CL8GAyP5rZ8OQ==/3294136840661516.jpg?param=130y130">
+        <div class="caption">
+          <h3>徐佳莹</h3>
+          <p class="sheight">台湾女歌手，在《超级星光大道》第三届比赛中表现优异，以自创曲《身骑白马》拿下25分满分的成绩，是超级星光大道开播最快得到满分的参赛者，并拿下当届总冠军。2009年5月29日发行个人首张创作专辑《徐佳莹LaLa 首张创作专辑》，最新专辑《理想人生》于2012年6月6日发行。</p>
+          <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="http://music.163.com/outchain/player?type=2&id=400161588&auto=0&height=66"></iframe>
+        </div>
+      </div>
+    </div>
+    <div class="col-6 col-sm-6 col-lg-4">
+      <div class="thumbnail"> <img class="img-circle" src="http://p3.music.126.net/owPnoYfYbiPKmuPkfruyTQ==/5976945209049357.jpg?param=130y130">
+        <div class="caption">
+          <h3>josh vietti</h3>
+          <p class="sheight">josh vietti是一位乐观，热情极具个人魅力的年轻音乐家，他出生于美国加州，4岁就开始学习小提琴，并在2006年由于对音乐的狂热，josh开创了自己的事业。最初他在美国的Santa Monica第三St. Promenade大道做街头表演，并且由此卖出了15000张CD唱片。后来被著名的歌手Brian Kennedy (Rihanna, Chris Brown, Jennifer Hudson)和Kashif (Whitney Houston & Kenny G)发现，并邀请他在他们的现场音乐会上演出，后来在工作室中为他录制音乐。</p>
+          <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="http://music.163.com/outchain/player?type=2&id=28828076&auto=0&height=66"></iframe>
+        </div>
+      </div>
+    </div>
+    <div class="col-6 col-sm-6 col-lg-4">
+      <div class="thumbnail"> <img class="img-circle" src="http://p4.music.126.net/fVPNwFc69h5wsniVC21JiQ==/1683352302139289.jpg?param=130y130">
+        <div class="caption">
+          <h3>理查德·克莱德曼</h3>
+          <p class="sheight">理查德·克莱德曼（Richard Clayderman，1953年12月28日－），法国钢琴演奏家。本名菲利浦·罗贝路易·帕杰斯。理查德·克莱德曼的钢琴演奏作品主要以大众接受度高的乐曲为主，而较少演奏学院派古典音乐。</p>
+          <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="http://music.163.com/outchain/player?type=2&id=5038302&auto=0&height=66"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--/.container--> 
+
+<script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script> 
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 --> 
+<script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 </body>
 </html>
