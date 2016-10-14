@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>CSS3动画切换</title>
+	<link rel="icon" href="https://xjak.github.io/images/ic.jpg">
+	<link rel="stylesheet" href="css/css.css">
+</head>
+<body>
+	<div id="container" data-PageSwitch>
+		<div class="sections">
+			<div class="section active" id="section0">
+				<div class="intro">
+					<h1 class="title">1080p AMOLED 纯真显示屏，第四代<br/>大猩猩2.5D弧度玻璃</h1>
+					<p>5.5英寸1080p AMOLED屏幕，色彩锐丽，画质自然。第四代大猩猩2.5D弧度玻璃，透光率更<br/>高，强度比上代提升约13.3%，防刮耐磨性能提升2倍左右，屏幕更清晰，也更耐用。</p>
+					<img src="images/ph.png">
+				</div>
+			</div>
+			<div class="section" id="section1">
+				<div class="intro">
+					<div  class="conp2"">
+                        <img class="im" src="images/phl.png"/>
+					    <img class="im1" src="images/ph1.png"/>
+					    <img class="im2" src="images/phr.png"/>
+					</div>	
+				</div>
+			</div>
+			<div class="section" id="section2">
+				<div class="intro">		
+				    <img class="im3" src="images/ph4.png"/>
+					        <h1 class="title">骁龙820处理器,强劲才带劲</h1>
+					        <p >高通首款定制4核64 位Kryo CPU架构，单核的主<br/>
+					        频高达 2.2GHz，14nm工艺制程,性能性能和<br/>
+					        效率比上一代提升200%，更省电，也更省心。<br/>
+					        性能的强劲，让你玩起来更带劲和效率比<br/>
+					        上一代提升200%，更省电，也更省心。<br/>
+					        性能的强劲，让你玩起来更带劲。</p>
+					<img class="im4" src="images/ph5.jpg"/>
+				</div>
+			</div>
+			<div class="section" id="section3">
+				<div class="intro conp4">
+					<h1 class="title">多功能NFC小小的芯片<br/>大大地方便</h1>
+					<p>有了NFC，给公交卡充值，再也不用排队等待。
+					读取卡<br/>片信息，一目了然。在两部具有NFC功能手机间相互传<br/>输联系人信息、照片、文件等数据，轻松快意。只需靠<br/>近NFC，就能默默为你做更多，大大方便你的生活。</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script type="text/javascript" src="js/pageswitch.js"></script>
+	<script type="text/javascript">
+	$("#container").PageSwitch({
+		index:0,
+		easing : "ease-in-out",
+		loop : true,
+		duration : 500,
+		 callback:alerts
+
+	});
+	function alerts(){
+		 var im = $('.im'),
+		 im1= $('.im2'),
+		 im2= $('.im3'),
+		 im3= $('.im4'),
+		 ts = $('.conp4');
+
+		switch(_ts){
+         case 1:
+           im.addClass('ani1');
+           im1.addClass('ani2');
+         break;
+         case 2:
+            im2.addClass('ani3');
+           im3.addClass('ani4');
+         break;
+         case 3:   
+           ts.addClass('ani5');
+         break;
+		}
+			
+	}
+	</script>
+</body>
+</html>
