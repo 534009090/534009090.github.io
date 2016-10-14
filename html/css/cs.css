@@ -253,10 +253,12 @@ body{
 	background:#9A1C1C;
 }
 .content .skill .ai2:hover{
-	-moz-transform: translateY(-35px);
-	-webkit-transform: translateY(-35px);
-	transform: translateY(-35px);
-	background:#2DDE2D;
+    transform:rotateY(360deg);
+    -webkit-transform: rotateY(360deg);
+    -ms-transform: rotateY(360deg);	
+    -o-transform: rotateY(360deg);	
+    -moz-transform: rotateY(360deg);
+    background:#2DDE2D;
 }
 .content .skill .ai3:hover{
 	-moz-transform:rotate(-360deg);
@@ -264,5 +266,4 @@ body{
 	transform:rotate(-360deg);
 	background:#00f;
 }
-
 
