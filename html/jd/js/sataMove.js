@@ -30,15 +30,3 @@ function startMove(obj,json,fn){
         }
     },10);
 }
-/*
-方法
- 同时运动 宽高 透明度
- onmouseover=onmouseenter 代替阻止冒泡 
- startMove(变量名,{width:201,height:200,opacity:100}); 
-链式运动调用 
- Li.onmouseover=function(){ 
- startMove(Li,{width:400},function(){//先宽 
- startMove(Li,{height:200},function(){//后高 
- (Li,{opacity:100});//再透明度 
- });}); } 
- */
