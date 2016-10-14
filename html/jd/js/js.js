@@ -107,7 +107,7 @@ window.onload = function () {
 			container.onmouseout = play;
 			play();
 
- var phs = ['images/w1.jpg','images/w2.jpg','images/w3.jpg','images/w4.jpg','images/w5.jpg','images/w6.jpg','images/w1.jpg','images/w2.jpg','images/w5.jpg'];
+ var phs = ['https://r.photo.store.qq.com/psb?/V115M72j2t1nX9/iSADmtRXYTwHdSy.kWT5wTEPCqJSVOMRVZgi99bD6Ho!/r/dAkBAAAAAAAA','https://r.photo.store.qq.com/psb?/V115M72j2t1nX9/QC2hK3UC6FURm9jOumfozYZYPmL30QThBZHXQOpN2ts!/r/dHcBAAAAAAAA','https://r.photo.store.qq.com/psb?/V115M72j2t1nX9/FDMWAtlJwCSDQRlpx0k7eL43mLweEsxNao8GYV1M2lY!/r/dG8BAAAAAAAA','https://r.photo.store.qq.com/psb?/V115M72j2t1nX9/evqn4c3vtGGywO5*xCjPXT3pCNNIevDlzoAgE.BPAD8!/r/dAoBAAAAAAAA','https://r.photo.store.qq.com/psb?/V115M72j2t1nX9/8kwh54HNKVj.H78MPNDrq9.oRDpQtl2g9vjqEhqI3yY!/r/dAoBAAAAAAAA','https://r.photo.store.qq.com/psb?/V115M72j2t1nX9/MsSxyLM*uqC6xxi1Y95P0AbPyOdGpXFLHBMUjwp6bAc!/r/dAkBAAAAAAAA','https://r.photo.store.qq.com/psb?/V115M72j2t1nX9/iSADmtRXYTwHdSy.kWT5wTEPCqJSVOMRVZgi99bD6Ho!/r/dAkBAAAAAAAA','https://r.photo.store.qq.com/psb?/V115M72j2t1nX9/QC2hK3UC6FURm9jOumfozYZYPmL30QThBZHXQOpN2ts!/r/dHcBAAAAAAAA','https://r.photo.store.qq.com/psb?/V115M72j2t1nX9/8kwh54HNKVj.H78MPNDrq9.oRDpQtl2g9vjqEhqI3yY!/r/dAoBAAAAAAAA'];
 
      var bg = document.getElementById('imgs');
      var lis = document.getElementById("lis").getElementsByTagName("li");
