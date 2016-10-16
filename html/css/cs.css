@@ -274,12 +274,11 @@ body{
 	height:130px;
 	padding-top:20px;
 	background:#fff;
+        border: 1px solid #615D5D;
 	border-radius:15px;
 	-webkit-border-radius:15px;
 	-moz-border-radius:15px;
 	-o-border-radius:15px;
-	box-shadow:1px 1px 10px 1px #3E74C7;
-	-webkit-box-shadow:1px 1px 10px 1px #3E74C7;
 }
 .content .skill .works a span{
 	font-size:18px;
