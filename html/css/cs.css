@@ -249,7 +249,7 @@ body{
 .content .skill{
 	width:100%;
 	height:400px;
-	background:rgba(39,41,51,.8);
+	background:rgba(255,255,255,.9);
 	margin-top:60px;
 	margin-bottom:160px;
 }
@@ -258,7 +258,7 @@ body{
 	width:100%;
 	color:#ccc;
 	padding-top:18px;
-	font-size:25px;
+	font-size:20px;
 }
 .content .skill .works{
 	width:100%;
@@ -273,13 +273,13 @@ body{
 	width:250px;
 	height:130px;
 	padding-top:20px;
-	background:rgba(222,222,222,.8);
+	background:#fff;
 	border-radius:15px;
 	-webkit-border-radius:15px;
 	-moz-border-radius:15px;
 	-o-border-radius:15px;
-	box-shadow:1px 1px 10px 1px #CE1BCE;
-	-webkit-box-shadow:1px 1px 10px 1px #CE1BCE;
+	box-shadow:1px 1px 10px 1px #3E74C7;
+	-webkit-box-shadow:1px 1px 10px 1px #3E74C7;
 }
 .content .skill .works a span{
 	font-size:18px;
