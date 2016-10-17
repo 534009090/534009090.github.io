@@ -111,6 +111,9 @@ h3{
 	list-style:decimal;
 	margin-top:5px;
 }
+.ability ol li a{
+       color:red;
+}
 .works,.info,.ability{
 	display:none;
 }
