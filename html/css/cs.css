@@ -82,7 +82,7 @@ h3{
 	float:left;
 	margin:20px 47px;
 	line-height:30px;
-
+        border-radius: 2px;
 }
 .ability ul li span{
 	background:#ccc;
