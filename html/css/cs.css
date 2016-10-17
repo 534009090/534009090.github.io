@@ -137,11 +137,11 @@ h3{
 }
 footer{
 	clear:both;
-	font-family:"宋体"; 
+	font-family:"黑体","宋体"; 
 	font-size: 25px;
     padding-top:30px;
 	color:#fff;
 	width:100%;
 	height:120px;
-	background:#666;
+	background:#eee;
 }	
