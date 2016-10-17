@@ -85,13 +85,14 @@ h3{
 
 }
 .ability ul li span{
-	background:#BB3F36;
+	background:#ccc;
 	display:block;
 	padding-left:12px;
 	height:30px;
-	color:#fff;
+	color:#666;
 	text-align:left;
-	float:left;	
+	float:left;
+	border-radius: 3px;
 }
 .ability i{
 	padding-right:10px;
@@ -127,6 +128,7 @@ h3{
 	height:130px;
 	padding-top:20px;
 	border:1px solid #333;
+	border-radius: 4px;
 }
 .works a:hover{
 	background:#A5A5A5;
