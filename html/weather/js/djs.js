@@ -16,15 +16,15 @@
     });
     cityPicker.init();
 
-  $(function(){ 
+
   $('#lookup').click(function(){ 
               	if ($('#cityChoice').val()=='请选择') {alert('请选择要查询的城市！');  return}
             $.ajax({  
-                url: 'https://wthrcdn.etouch.cn/weather_mini?city='+str,  
+                url: 'http://wthrcdn.etouch.cn/weather_mini?city='+str,  
                 type: 'GET',  
-                dataType: 'jsonp',  
+                dataType: 'json',  
                 timeout: 1000,  
-                cache: true,  
+                cache: false,  
                 beforeSend: LoadFunction, //加载执行方法    
                 error: erryFunction,  //错误执行方法    
                 success: succFunction //成功执行方法    
@@ -55,4 +55,4 @@
               }
             }
 });
-});
+
