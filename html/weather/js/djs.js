@@ -45,7 +45,7 @@
               $('#show4').text(t.data.forecast[0].type);
               $('#show5').text(t.data.forecast[0].low);
               $('#show0').text(t.data.forecast[0].date);
-              for (var i = 1; i < 5; i++) {
+              for (var i = 1; i < 5; i++) { 
               	 $('#show'+i+'1').text(t.data.forecast[i].date);
                  $('#show'+i+'2').text(t.data.forecast[i].fengxiang); 
                  $('#show'+i+'3').text(t.data.forecast[i].fengli);
