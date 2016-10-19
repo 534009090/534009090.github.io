@@ -22,8 +22,8 @@
             $.ajax({  
                 url: 'http://wthrcdn.etouch.cn/weather_mini?city='+str,  
                 type: 'GET',  
-                dataType: 'json',  
-                timeout: 1000,  
+                dataType: 'jsonp',  
+                timeout: 2000,  
                 cache: false,  
                 beforeSend: LoadFunction, //加载执行方法    
                 error: erryFunction,  //错误执行方法    
