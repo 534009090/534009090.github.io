@@ -81,8 +81,9 @@
 $('#lookup').click(function(){ 
          $('.header').css('display','block');
   $.get("http://wthrcdn.etouch.cn/weather_mini?city=上海",'',function(data){
-$("#Result").html(data); }//返回的data是字符串类型
-); 
+$("#Result").html(data);
+  });
+
         });
 	
 </script>	
