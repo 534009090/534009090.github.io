@@ -63,22 +63,10 @@
 <script src="https://xjak.github.io/html/weather/js/djs.js"></script>
 <script>
 $('#lookup').click(function(){ 
-       $.ajax({
-	type:'POST',       
-        url:"http://wthrcdn.etouch.cn/WeatherApi?city=北京",  
-        dataType:'jsonp',
-	async: true,  //异步
-	cache:true,       
-        data:'',  
-        //jsonp:'callback',  
-        success:function(result) {  
-               $('.header').css('display','block');
-             $('#Result').text(result.data.wendu+'℃'); 
-               $('#show').text(result.data.ganmao);  
-            
-        },  
-        timeout:3000  
-    }); 
+         $('.header').css('display','block');
+  $.get("http://wthrcdn.etouch.cn/weather_mini?city=上海",'',function(data){
+$("#Result").html(data); }//返回的data是字符串类型
+); 
         });
 	
 </script>	
