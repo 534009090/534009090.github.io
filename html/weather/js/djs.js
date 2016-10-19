@@ -20,7 +20,7 @@
   $('#lookup').click(function(){ 
               	if ($('#cityChoice').val()=='请选择') {alert('请选择要查询的城市！');  return}
             $.ajax({  
-                url: 'http://wthrcdn.etouch.cn/weather_mini?city='+str,  
+                url: 'https://wthrcdn.etouch.cn/weather_mini?city='+str,  
                 type: 'GET',  
                 dataType: 'jsonp',  
                 timeout: 1000,  
