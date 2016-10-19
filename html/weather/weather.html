@@ -67,7 +67,7 @@ $('#lookup').click(function(){
         url:"https://wthrcdn.etouch.cn/weather_mini?city=上海",  
         dataType:'jsonp',
 	async: true,  //异步
-	cache:false,       
+	cache:true,       
         data:'',  
         jsonp:'callback',  
         success:function(result) {  
