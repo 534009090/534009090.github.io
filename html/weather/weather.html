@@ -83,7 +83,7 @@
               	if ($('#cityChoice').val()=='请选择') {alert('请选择要查询的城市！');  return}
                 $.ajax({
                     async:false,
-                    url: 'https://wthrcdn.etouch.cn/weather_mini?city='+str,
+                    url: '//wthrcdn.etouch.cn/weather_mini?city='+str,
                     type: "GET",
                     dataType: 'jsonp',
                     timeout: 5000,
