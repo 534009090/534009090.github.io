@@ -78,27 +78,28 @@
     });
     cityPicker.init();
 	
- $(function(){ 
+   $(function(){ 
   $('#lookup').click(function(){ 
-              	if ($('#cityChoice').val()=='请选择') {alert('请选择要查询的城市！');  return}
+              	if ($('#cityChoice').val()=='请选择') {alert('请选择要查询的城市！');  return} 
                 $.ajax({
-                    async:false,
+                  //  async:false,
                     url: '//wthrcdn.etouch.cn/weather_mini?city='+str,
                     type: "GET",
-                    dataType: 'jsonp',
+                    dataType: 'jsonp', 
                     timeout: 5000,
                 beforeSend: LoadFunction, //加载执行方法    
                 error: erryFunction,  //错误执行方法    
                 success: succFunction //成功执行方法    
             })  
             function LoadFunction() {  
-                console.log('ok');  
+   
             }  
             function erryFunction() {  
                 alert("服务器繁忙，请稍后查询！");  
             }  
             function succFunction(t) { 
             	$('.header').css('display','block');
+                $('#cx').text(t.data.city);
               $('#Result').text(t.data.wendu+'℃'); 
               $('#show').text(t.data.ganmao);  
               $('#show1').text(t.data.forecast[0].fengxiang); 
