@@ -101,8 +101,8 @@ html,body{
 #section0 .title{
 	-webkit-transform: translateX(-100%);
 	transform: translateX(-100%);
-	-webkit-animation: sectitle0 1.5s ease-in-out 100ms forwards;
-	animation: sectitle0 1.5s ease-in-out 100ms forwards;
+	-webkit-animation: sectitle0 1.5s ease-in-out 500ms forwards;
+	animation: sectitle0 1.5s ease-in-out 500ms forwards;
 	font-size: 2.5em;
 	font-weight:lighter;
 }
@@ -112,8 +112,8 @@ html,body{
 	color:#fff;
 	-webkit-transform: translateX(100%);
 	transform: translateX(100%);
-	-webkit-animation: sec0 1.5s ease-in-out 100ms forwards;
-	animation: sec0 1.5s ease-in-out 100ms forwards;
+	-webkit-animation: sec0 1.5s ease-in-out 500ms forwards;
+	animation: sec0 1.5s ease-in-out 500ms forwards;
 }
 
 @-webkit-keyframes sectitle0{
