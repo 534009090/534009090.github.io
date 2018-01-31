@@ -4,7 +4,7 @@
 
 ```javascript
   class move() {
-    contener{
+    constructor{
     }
     get() {
     }
