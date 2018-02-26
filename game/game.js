@@ -7,22 +7,15 @@ window.requestAnimFrame = (function() {
 	}
 })();
 
-var imgs = [
-	{
-		url: './images/load.jpg',
-		img: null
-	}, {
-		url: './images/huaji.jpg',
+var imgs = [ {
+		url: './huaji.jpg',
 		img: null
 	}
 ]
 
 var musics = [
 	{
-		url: './bgm/op.mp3',
-		audio: null
-	}, {
-		url: './bgm/Bad Apple!!.mp3',
+		url: './op.mp3',
 		audio: null
 	}
 ]
@@ -497,4 +490,4 @@ for (var i = 0; i < musics.length; i++) {
 	musics[i].audio = aa
 }
 
-musics[1].audio.play()
+musics[0].audio.play()
