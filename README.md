@@ -1,25 +1,10 @@
-## hello
-[百度](www.baidu.com)
-![baidu](http://www.baidu.com/img/bdlogo.gif)
+## demo
+[demo](http://xjak.github.io)
 
 ```javascript
-  class move() {
+  class c() {
     constructor{
-    }
-    get() {
     }
   }
   
 ```
-* 123
-* 123
-* 123
-- 22
-- 332
-*倾斜*
-**加粗**
-***倾斜加粗***
-
-- |表- |表- |
-|:----:|
-做|又
