@@ -1,11 +1,11 @@
-window.requestAnimFrame = (function() {
-	return window.requestAnimationFrame ||
-	window.webkitRequestAnimationFrame ||
-	window.mozRequestAnimationFrame ||
-	function(callback) {
-		window.setTimeout(callback, 1000 / 60);
-	}
-})();
+// window.requestAnimFrame = (function() {
+// 	return window.requestAnimationFrame ||
+// 	window.webkitRequestAnimationFrame ||
+// 	window.mozRequestAnimationFrame ||
+// 	function(callback) {
+// 		window.setTimeout(callback, 1000 / 60);
+// 	}
+// })();
 
 var can = document.querySelector('#canvas'),
 	ctx = can.getContext('2d'),
@@ -16,24 +16,21 @@ var can = document.querySelector('#canvas'),
 
 can.style.height = _h + 'px'
 can.style.width = _w + 'px'
-can.height = _h * 2
-can.width = _w * 2
+can.height = h
+can.width = w
 
 
 // 状态
 var $ = {
-	loadTime: 1, //第一屏
-	waitTime: 1, // 等待
-	huaji: 0, // 等在载入完成
-	start: 0, // 进行中
-	over: 0, // 结束
-	ratio: 1, // 难度等级
-	speed: 500,
+	grade: 0, // 难度等级
+	ratio: 30, // 系数
+	speed: 500, // 生成速度
 	moveX: _w / 2,
 	moveY: h - 150,
-	status: 1,
 	score: 0, // 得分
-	index: 0
+	index: 0, // 当前位置
+	await: 0, // show play text
+	game: 0, // game status
 }
 
 // FPS
@@ -81,6 +78,7 @@ var api = {
 		for (var i = 0; i < musicList.length; i++) {
 			var aa = document.createElement('audio')
 			aa.src = musicList[i]
+			aa.loop = true
 			musics.push(aa)
 		}
 		// 图片预加载
@@ -157,12 +155,12 @@ var api = {
 				ctx.fill();
 			}
 			tick++;
-			$.loadTime && requestAnimationFrame(loop)
+			console.log('加载中...')
+			$.index === 0 && requestAnimFrame(loop)
 		}
 		loop()
 	},
 	bgText: function() {
-		musics[0].play()
 		ctx.translate(-_w, -_h)
 		var y = h
 		var textList = [
@@ -200,8 +198,8 @@ var api = {
 			}
 			api.drawText('跳过', w - 100, h - 80, 'bold 24px Arial', '#0ee')
 			y-=.4
-			if ($.index == 1) requestAnimationFrame(loadText)
-			if (y < 80) $.index = 2
+			$.index == 1 && requestAnimFrame(loadText)
+			console.log('load_Text')
 		}
 		loadText()
 	},
@@ -283,46 +281,41 @@ var api = {
 	  	for (var i = 0; i < maxStars; i++) {
 	  		new Star();
 	  	}
-
-	  	var huajiOver = 0
-	  	var textSize = 0
-		var flag = 1
-	  	function animate() {
-	  		
-	  		ctx.globalCompositeOperation = 'source-over';
+	  	var opacity = 0,
+			flag = 1,
+			xy = -_w,
+			target = (w - _w) / 2
+			ratio = 1
+	  	function starMove() {
+	  		ctx.globalCompositeOperation = 'source-over'
 	  		ctx.globalAlpha = 0.5; //尾巴
-	  		ctx.fillStyle = 'hsla(' + hue + ', 64%, 6%, 2)';
+	  		ctx.fillStyle = 'hsla(' + hue + ', 64%, 6%, 2)'
 	  		ctx.fillRect(0, 0, w, h)
-
-	  		ctx.globalCompositeOperation = 'lighter';
+	  		ctx.globalCompositeOperation = 'lighter'
 	  		for (var i = 1, l = stars.length; i < l; i++) {
-
-	  			stars[i].draw();
+	  			stars[i].draw()
 	  		};
-	  		ctx.globalAlpha= 1
+	  		ctx.globalAlpha = 1
 			ctx.globalCompositeOperation = 'source-over';
-	  		if ($.huaji) {
-	  			ctx.drawImage(imgs[1], _w -170, _w - 100, _w, _w)
-				api.drawText('PLAY', _w, h * 0.8, 'bold 50px serif', 'rgba(155,200,50,'+textSize/100+')', 'rgb(155,200,50)', '30', 'center')
+	  		if (xy < target) {
+	  			xy += ratio
+	  			ratio += 0.2
+	  		} else {
+	  			api.drawText('PLAY', _w, h * 0.8, 'bold 50px serif', 'rgba(155,200,50,'+opacity/100+')', 'rgb(155,200,50)', '30', 'center')
 				if (flag) {
-					textSize+=2
+					opacity+=2
 				} else {
-					textSize-=2
+					opacity-=2
 				}
-				if (textSize <= 0) flag = 1
-				if (textSize > 100) flag = 0
+				if (opacity <= 0) flag = 1
+				if (opacity > 100) flag = 0
+				$.await = 1 // ok
 	  		}
-			$.waitTime && requestAnimationFrame(animate);
+	  		ctx.drawImage(imgs[1], xy, xy, _w, _w)
+			$.index === 2 && requestAnimFrame(starMove)
+			console.log('wait')
 	  	}
-	  	animate();
-	  	animation(0, _w, 1400, 'Quart.easeOut', function (v, b) {
-	  		ctx.globalCompositeOperation = 'source-over';
-			ctx.drawImage(imgs[1], v -170, v - 100, v , v)
-			if (b) {
-				$.huaji = 1
-			}
-		})
-
+	  	starMove()
 	},
 	// 获取img
 	getImg: function (src) {
@@ -358,8 +351,13 @@ var api = {
 		}
 		getFps()
 	},
-	// 
+	// ing
 	startMove: function() {
+		$.game = 1
+		$.speed = 500
+		$.score = 0
+		$.grade = 0
+		$.index = 3
 		ctx.clearRect(0, 0, w, h)
 		// fps
 		api.setFps()
@@ -381,26 +379,26 @@ var api = {
 			
 			api.drawText('分数：' + $.score, 10, 35, 'bold 25px Arial', '#fff')
 
-			api.drawText('等级：' + $.ratio, _w, 35, 'bold 20px Arial', '#fff', 0, 0, 'center')
+			api.drawText('等级：' + $.grade, _w, 35, 'bold 20px Arial', '#fff', 0, 0, 'center')
 
 			api.fps()
-			$.status && requestAnimationFrame(move)
+			$.game && requestAnimFrame(move)
 		}
 		move()
 	},
-	addSpot: function(k) {
-		function getXY(y) {
-			return {
-				x: Math.round(Math.random() * w),
-				y: y || Math.round(Math.random() * h),
-				w: Math.random() * 80
-			}
+	getSpotXY: function getXY(y) {
+		return {
+			x: Math.round(Math.random() * w),
+			y: y || Math.round(Math.random() * h),
+			w: Math.random() * 80
 		}
+	},
+	addSpot: function(k) {
 		if (k) {
-			spotArr.push(getXY(1))
+			spotArr.push(api.getSpotXY(1))
 		} else {
 			for (var i = 0; i < 100; i++) {
-				spotArr.push(getXY())
+				spotArr.push(api.getSpotXY())
   			}
 		}
 	},
@@ -415,13 +413,14 @@ var api = {
   			}
   		}
 	},
+	// 增加障碍
 	addObstacle: function() {
 		obstacleArr.push({
 			x: Math.round(Math.random() * w) - 50,
 			y: -10,
-			img: obstacle[Math.round(Math.random()*7)]
+			img: obstacle[Math.round(Math.random()*6)]
 		})
-		$.status && setTimeout(api.addObstacle, $.speed)
+		$.game && setTimeout(api.addObstacle, $.speed)
 	},
 	// 障碍物
 	obstacle: function() {
@@ -432,10 +431,9 @@ var api = {
 			if (obstacleArr[i].y > h) {
 				obstacleArr.splice(i, 1)
 				$.score++
-				if ($.score - (10 * $.ratio) > 10) {
-					$.speed-= 40
-					$.ratio++
-					if ($.speed < 60) $.speed = 60
+				if ($.score - (10 * $.grade) > 10) {
+					$.grade++
+					if ($.speed > 60) $.speed-= $.ratio
 				}
 			}
 		}
@@ -444,14 +442,15 @@ var api = {
 	interval: function(ox, oy, x, y, r) {
 		if ((oy >= y && oy < y + r) || (oy + r >= y && oy + r <= y + r)) {
 			if ((ox >= x && ox < x + r) || (ox + r >= x && ox + r <= x + r)) {
-				$.status = 0
-				$.over = 1
 				obstacleArr = []
-				$.ratio = 0
 				setTimeout(function() {
-					api.drawText('GAME OVER!', _w, _h - 200, 'bold 70px Arial', 'green', 'green', 20, 'center')
-					api.drawText('得分：' + $.score, _w, _h, '50px Arial', '#fff', 0, 0, 'center')
-					api.drawText('重新开始', _w, _h + 300, 'bold 50px Arial', 'red', 0, 0, 'center')
+					$.game = 0
+					musics[2].pause()
+					musics[3].currentTime = 0
+					musics[3].play()
+					api.drawText('GAME OVER!', _w, _h - 250, 'bold 60px Arial', '#12f', 0, 0, 'center')
+					api.drawText('得分：' + $.score, _w, _h, '40px Arial', '#fff', 0, 0, 'center')
+					api.drawText('重新开始', _w, _h + 300, 'bold 40px Arial', 'rgb(155,200,50)', 0, 0, 'center')
 				}, 100)
 			}
 		}
@@ -461,16 +460,19 @@ var api = {
 // events
 var touch = {
 	time: 0,
-	y: 0
+	y: 0,
+	flag: 0
 }
 can.addEventListener('touchstart', function(e) {
 	e.preventDefault()
 	touch.time = Date.now()
+	touch.flag = 1
 	touch.y = e.targetTouches[0].pageY
 }, false)
 
 can.addEventListener('touchmove', function(e) {
 	e.preventDefault()
+	touch.flag = 0
 	var x = e.targetTouches[0].pageX -25
 	if (x >= _w) x = _w
 	if (x <= 0) x = 0
@@ -479,7 +481,7 @@ can.addEventListener('touchmove', function(e) {
 
 can.addEventListener('touchend', function(e) {
 	e.preventDefault()
-	if (Date.now() - touch.time < 300) {
+	if (touch.flag && Date.now() - touch.time < 300) {
 		switch ($.index) {
 			case 1:
 				$.index = 2
@@ -488,51 +490,68 @@ can.addEventListener('touchend', function(e) {
 				musics[1].play()
 			break
 			case 2:
-				$.index = 3
-				musics[1].pause()
-				musics[2].play()
-				musics[2].loop = true
-				if (touch.y > (_h * 0.7) && !$.start) {
-					$.waitTime = 0
+				if ($.await && touch.y > (_h * 0.7)) {
+					musics[1].pause()
+					musics[3].pause()
+					musics[2].play()
 					setTimeout(function() {
-						ctx.clearRect(0, 0, w, h)
+						ctx.fillStyle = '#000'
+						ctx.fillRect(0, 0, w, h)
 						api.drawText('Ready', _w, _h, 'bold 35px Arial', '#fff', '#fff', 10, 'center')
 						setTimeout(function() {
-						ctx.clearRect(0, 0, w, h)
-						api.drawText('Go', _w, _h, 'bold 35px Arial', '#fff', '#fff', 10, 'center')
-						$.start = 1
-						setTimeout(function() {
-							api.startMove()
-							}, 1000)
+							ctx.fillStyle = '#000'
+							ctx.fillRect(0, 0, w, h)
+							api.drawText('Go', _w, _h, 'bold 35px Arial', '#fff', '#fff', 10, 'center')
+							setTimeout(function() {
+								api.startMove()
+								}, 1000)
 						}, 1000)
 					}, 300)
-				}
-				if ($.over) {
-					$.score = 0
-					$.status = 1
-					api.startMove()
-					$.over = 0
+					$.await = 0
 				}
 			break
 			case 3:
+				if (!$.game && touch.y > (_h * 0.7)) {
+					musics[3].pause()
+					musics[2].currentTime = 0
+					musics[2].play()
+					api.startMove()
+				}
 			break
 		}
 	}
 }, false)
 
-// 
-api.init()
+// touch.js
+// 检查定时器是否关闭 
+
+// window.onload = function() {
+// 	setTimeout(function() {
+// 		api.init()
+// 		api.starLoading()
+// 		musics[0].autoplay = true
+// 		musics[0].onplay = function() {
+// 			setTimeout(function() {
+// 				$.index = 1
+// 				setTimeout(function() {
+// 					api.bgText()
+// 				}, 10)
+// 			}, 2000)
+// 		}
+// 	}, 2000)	
+// }
 
 
-window.onload = function() {
-	musics[0].play()
-	api.starLoading()
-
-	setTimeout(function() {
-		$.loadTime = 0
-		$.index = 1
-		setTimeout(function() {
-			api.bgText()//api.wait()
-		}, 10)
-	}, 2000)
+var text = document.querySelector('#p')
+function showInfo() {
+	var te = 'index: ' + $.index + '<br>' + 
+		'moveX: ' + $.moveX + '<br>' +
+		'moveY: ' + $.moveY + '<br>' +
+		'game: ' + $.game + '<br>' +
+		'speed: ' + $.speed + '<br>'
+	text.innerHTML = te
+	console.log(te)
+	requestAnimFrame(showInfo)
 }
+// showInfo()
+
