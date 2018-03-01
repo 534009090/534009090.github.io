@@ -525,21 +525,21 @@ can.addEventListener('touchend', function(e) {
 // touch.js
 // 检查定时器是否关闭 
 
-// window.onload = function() {
-// 	setTimeout(function() {
-// 		api.init()
-// 		api.starLoading()
-// 		musics[0].autoplay = true
-// 		musics[0].onplay = function() {
-// 			setTimeout(function() {
-// 				$.index = 1
-// 				setTimeout(function() {
-// 					api.bgText()
-// 				}, 10)
-// 			}, 2000)
-// 		}
-// 	}, 2000)	
-// }
+window.onload = function() {
+	setTimeout(function() {
+		api.init()
+		api.starLoading()
+		musics[0].autoplay = true
+		musics[0].onplay = function() {
+			setTimeout(function() {
+				$.index = 1
+				setTimeout(function() {
+					api.bgText()
+				}, 10)
+			}, 2000)
+		}
+	}, 2000)	
+}
 
 
 var text = document.querySelector('#p')
