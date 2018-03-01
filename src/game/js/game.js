@@ -347,7 +347,7 @@ var api = {
 			fps.fps = Math.round(fps.size * 1000 / (t - fps.time))
 			fps.time = t
 			fps.size = 0
-			setTimeout(getFps, 1000) 
+			$.game && setTimeout(getFps, 1000) 
 		}
 		getFps()
 	},
