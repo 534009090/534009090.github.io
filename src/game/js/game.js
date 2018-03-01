@@ -155,7 +155,9 @@ var api = {
 				ctx.fill();
 			}
 			tick++;
-			console.log('加载中...')
+
+			api.drawText('loading...', _w, h - 80, '40px Arial', '#fff', 0, 0, 'center')
+			console.log('加载中...', _w)
 			$.index === 0 && requestAnimFrame(loop)
 		}
 		loop()
@@ -491,6 +493,7 @@ can.addEventListener('touchend', function(e) {
 			break
 			case 2:
 				if ($.await && touch.y > (_h * 0.7)) {
+					$.index = 3
 					musics[1].pause()
 					musics[3].pause()
 					musics[2].play()
@@ -506,7 +509,7 @@ can.addEventListener('touchend', function(e) {
 								api.startMove()
 								}, 1000)
 						}, 1000)
-					}, 300)
+					}, 500)
 					$.await = 0
 				}
 			break
