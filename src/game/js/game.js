@@ -37,7 +37,8 @@ var $ = {
 var fps = {
 	size: 0,
 	fps: 0,
-	time: Date.now()
+	time: Date.now(),
+	timer: null
 }
 
 // img list
@@ -344,12 +345,13 @@ var api = {
 		api.drawText(fps.fps + ' FPS', w-90, 30, '20px Arial', '#fff')
 	},
 	setFps: function() {
+		clearTimeout(fps.timer)
 		function getFps() {
 			var t = Date.now()
 			fps.fps = Math.round(fps.size * 1000 / (t - fps.time))
 			fps.time = t
 			fps.size = 0
-			$.game && setTimeout(getFps, 1000) 
+			fps.timer = setTimeout(getFps, 1000) 
 		}
 		getFps()
 	},
