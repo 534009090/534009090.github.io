@@ -31,6 +31,8 @@ var $ = {
 	index: 0, // 当前位置
 	await: 0, // show play text
 	game: 0, // game status
+	execution: 0, // 进度
+	dataLength: 0, // 数据总长度
 }
 
 // FPS
@@ -57,10 +59,10 @@ var obstacleArr = []
 var api = {
 	init: function() {
 		var musicList = [
-			'./music/A New Age.mp3', // 背景介绍
+			'./music/A New Age.ogg', // 背景介绍
 			'./music/One Wish.mp3', // 开始
-			'./music/3.mp3', // ing
-			'./music/Jolly Frolic.mp3' // ing
+			'./music/3.ogg', // ing
+			'./music/Jolly Frolic.ogg' // ing
 		]
 		var imgList = [
 			'./images/load.jpg',
@@ -76,11 +78,16 @@ var api = {
 			'./images/g5.jpg',
 			'./images/g6.jpg',
 		]
+		$.dataLength = musicList.length + imgList.length + obstacleList.length
 		for (var i = 0; i < musicList.length; i++) {
-			var aa = document.createElement('audio')
-			aa.src = musicList[i]
-			aa.loop = true
-			musics.push(aa)
+			var au = document.createElement('audio')
+			au.src = musicList[i]
+			au.loop = true
+			au.reload = 'auto'
+			au.oncanplay = function() {
+				$.execution++
+			}
+			musics.push(au)
 		}
 		// 图片预加载
 		for (var y = 0; y < imgList.length; y++) {
@@ -324,6 +331,9 @@ var api = {
 	getImg: function (src) {
 		var img = new Image()
 		img.src = src
+		img.onload = function() {
+			$.execution++
+		}
 		return img
 		// var img = document.createElement('img')
 		// img.src = src
@@ -553,10 +563,13 @@ function showInfo() {
 		'moveX: ' + $.moveX + '<br>' +
 		'moveY: ' + $.moveY + '<br>' +
 		'game: ' + $.game + '<br>' +
-		'speed: ' + $.speed + '<br>'
+		'speed: ' + $.speed + '<br>' +
+		'execution: ' + $.execution + '<br>' +
+		'dataLength: ' + $.dataLength + '<br>' +
+		'进度: ' + $.execution / $.dataLength * 100 + '%'
 	text.innerHTML = te
 	console.log(te)
 	requestAnimFrame(showInfo)
 }
-// showInfo()
+showInfo()
 
