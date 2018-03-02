@@ -566,7 +566,7 @@ function showInfo() {
 		'speed: ' + $.speed + '<br>' +
 		'execution: ' + $.execution + '<br>' +
 		'dataLength: ' + $.dataLength + '<br>' +
-		'进度: ' + $.execution / $.dataLength * 100 + '%'
+		'进度: ' + ($.execution == 0 ? '0%' : (Math.round($.execution / $.dataLength * 100) + '%'))
 	text.innerHTML = te
 	console.log(te)
 	requestAnimFrame(showInfo)
