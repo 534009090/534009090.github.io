@@ -67,7 +67,8 @@ var api = {
 		var imgList = [
 			'./images/load.jpg',
 			'./images/huaji.jpg',
-			'./images/bgText.jpg'
+			'./images/b6.jpg',
+			'./images/b4.jpg'
 		]
 		var obstacleList = [
 			'./images/g0.png',
@@ -126,17 +127,16 @@ var api = {
 		count = 40,
 		sizeBase = 0.1,
 		sizeDiv = 6,
-		tick = 0;
+		tick = 0,
+		ingY = _h / 2 + 200;
 		ctx.translate(_w, _h);
 	
 		function loop() {
-			ctx.fillStyle = '#000';
-			ctx.fillRect(-_w, -_h, _w * 2, _h * 2);
-			ctx.fillStyle = '#fff';  
+			ctx.drawImage(imgs[3], -_w, -_h, w, h)
 			var angle = tick / 8,
-			radius = -50 + M.sin( tick / 15 ) * 100,
-			size;
-	
+				radius = -50 + M.sin( tick / 15 ) * 100,
+				size,
+				ing = $.execution ? Math.round($.execution / $.dataLength * 100) : 0
 			for( var i = 0; i < count; i++ ) {
 				angle += PI / 64;
 				radius += i / 30;
@@ -163,9 +163,18 @@ var api = {
 				ctx.fill();
 			}
 			tick++;
-
-			api.drawText('loading...', _w, h - 80, '40px Arial', '#fff', 0, 0, 'center')
+			api.drawText(ing + '%', 0, ingY - 50, '30px Arial', '#fff', 0, 0, 'center')
+			ctx.fillStyle = '#bbb'; 
+			ctx.fillRect(-_w, ingY, _w * 2, 3)
+			ctx.fillStyle = '#0f5'; 
+			ctx.fillRect(-_w, ingY, tick, 3)
+			ctx.beginPath()
+			ctx.arc(tick-_w, ingY+1, 8, 0, Math.PI * 2)
+			ctx.shadowBlur = 30
+			ctx.shadowColor = '#00f'
+			ctx.fill()
 			console.log('加载中...', _w)
+			// if (ing >= 100) $.index = 1
 			$.index === 0 && requestAnimFrame(loop)
 		}
 		loop()
@@ -544,15 +553,15 @@ window.onload = function() {
 	setTimeout(function() {
 		api.init()
 		api.starLoading()
-		musics[0].autoplay = true
-		musics[0].onplay = function() {
-			setTimeout(function() {
-				$.index = 1
-				setTimeout(function() {
-					api.bgText()
-				}, 10)
-			}, 2000)
-		}
+		//musics[0].autoplay = true
+		// musics[0].onplay = function() {
+		// 	setTimeout(function() {
+		// 		
+		// 		setTimeout(function() {
+		// 			api.bgText()
+		// 		}, 10)
+		// 	}, 2000)
+		// }
 	}, 2000)	
 }
 
@@ -568,7 +577,6 @@ function showInfo() {
 		'dataLength: ' + $.dataLength + '<br>' +
 		'进度: ' + ($.execution == 0 ? '0%' : (Math.round($.execution / $.dataLength * 100) + '%'))
 	text.innerHTML = te
-	console.log(te)
 	requestAnimFrame(showInfo)
 }
 showInfo()
