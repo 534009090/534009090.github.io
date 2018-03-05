@@ -297,7 +297,8 @@ var api = {
 		$.ctx.translate($._w, $._h);
 	
 		function loop() {
-			$.img[3] && $.ctx.drawImage($.img[3], -$._w, -$._h, $.w, $.h)
+			$.ctx.fillRect(0, 0, $.w, $.h)
+			$.ctx.drawImage($.img[3], -$._w, -$._h, $.w, $.h)
 			var angle = tick / 8,
 				radius = -50 + M.sin( tick / 15 ) * 100,
 				size,
