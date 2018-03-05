@@ -297,7 +297,7 @@ var api = {
 		$.ctx.translate($._w, $._h);
 	
 		function loop() {
-			$.ctx.drawImage($.img[3], -$._w, -$._h, $.w, $.h)
+			$.img[3] && $.ctx.drawImage($.img[3], -$._w, -$._h, $.w, $.h)
 			var angle = tick / 8,
 				radius = -50 + M.sin( tick / 15 ) * 100,
 				size,
@@ -332,7 +332,7 @@ var api = {
 			$.ctx.fillStyle = '#bbb'; 
 			$.ctx.fillRect(-$._w, ingY, $._w * 2, 3)
 			$.ctx.fillStyle = '#0f5'; 
-			$.ctx.fillRect(-$._w, ingY, ing / 100 * $.w, 9)
+			$.ctx.fillRect(-$._w, ingY, ing / 100 * $.w, 6)
 			$.ctx.drawImage($.img[1], ing * $.w - $._w - 38, ingY - 20, 40, 40)
 			console.log('加载中...', ing)
 			if (ing / 100 >= 1) {
