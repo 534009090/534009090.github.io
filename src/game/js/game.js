@@ -214,7 +214,7 @@ var api = {
 			au.src = music[i]
 			au.loop = true
 			au.reload = 'auto'
-			au.oncanplay = function() {
+			au.oncanplaythrough = function() {
 				$.execution++
 			}
 			$.music.push(au)
