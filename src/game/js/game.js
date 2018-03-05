@@ -333,9 +333,8 @@ var api = {
 			$.ctx.fillStyle = '#bbb'; 
 			$.ctx.fillRect(-$._w, ingY, $._w * 2, 3)
 			$.ctx.fillStyle = '#0f5'; 
-			$.ctx.fillRect(-$._w, ingY, ing / 100 * $.w, 6)
+			$.ctx.fillRect(-$._w, ingY, ing / 100 * $.w, 4)
 			$.ctx.drawImage($.img[1], ing * $.w - $._w - 38, ingY - 20, 40, 40)
-			console.log('加载中...', ing)
 			if (ing / 100 >= 1) {
 				$.index = 1
 				$.ctx.translate(-$._w, -$._h)
@@ -384,9 +383,8 @@ var api = {
 			api.drawText('跳过', $.w - 100, $.h - 80, 'bold 24px Arial', '#0ee')
 			y-=.4
 			$.index == 1 && requestAnimFrame(text)
-			console.log('load_Text')
 		}
-		setTimeout(text, 1000)
+		setTimeout(text, 500)
 	},
 	// 等待中
 	wait: function() {
@@ -494,7 +492,6 @@ var api = {
 	  		}
 	  		$.ctx.drawImage($.img[1], x, y, $._w, $._w)
 			$.index === 2 && requestAnimFrame(starMove)
-			console.log('wait')
 	  	}
 	  	move(-100, 400, 800, 'Bounce.easeOut', function(v) {
 	  		y = v
@@ -558,6 +555,5 @@ var api = {
 
 window.onload = function() {
 	api.init()
-	api.log()
-	console.log($)	
+	// api.log()
 }
