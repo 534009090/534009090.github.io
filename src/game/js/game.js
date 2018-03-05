@@ -301,7 +301,7 @@ var api = {
 			var angle = tick / 8,
 				radius = -50 + M.sin( tick / 15 ) * 100,
 				size,
-				ing = $.execution ? Math.round($.execution / $.dataLength) : 0
+				ing = $.execution ? Math.round($.execution / $.dataLength * 100) : 0
 			for( var i = 0; i < count; i++ ) {
 				angle += PI / 64;
 				radius += i / 30;
@@ -328,14 +328,14 @@ var api = {
 				$.ctx.fill();
 			}
 			tick++;
-			api.drawText(ing * 100 + '%', 0, ingY - 50, '30px Arial', '#fff', 0, 0, 'center')
+			api.drawText(ing + '%', 0, ingY - 50, '30px Arial', '#fff', 0, 0, 'center')
 			$.ctx.fillStyle = '#bbb'; 
 			$.ctx.fillRect(-$._w, ingY, $._w * 2, 3)
 			$.ctx.fillStyle = '#0f5'; 
-			$.ctx.fillRect(-$._w, ingY, ing * $.w, 9)
+			$.ctx.fillRect(-$._w, ingY, ing / 100 * $.w, 9)
 			$.ctx.drawImage($.img[1], ing * $.w - $._w - 38, ingY - 20, 40, 40)
 			console.log('加载中...', ing)
-			if (ing >= 1) {
+			if (ing / 100 >= 1) {
 				$.index = 1
 				$.ctx.translate(-$._w, -$._h)
 				api.bgText()
@@ -480,9 +480,6 @@ var api = {
 	  		};
 	  		$.ctx.globalAlpha = 1
 			$.ctx.globalCompositeOperation = 'source-over';
-	  	// 	if (xy < target) {
-	  	// 		xy += ratio
-	  	// 		ratio += 0.2
 	  		if (over) {
 	  			api.drawText('PLAY', $._w, $.h * 0.8, 'bold 50px serif', 'rgba(155,200,50,'+opacity/100+')', 'rgb(155,200,50)', '30', 'center')
 				if (flag) {
