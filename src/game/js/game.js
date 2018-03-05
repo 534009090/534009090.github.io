@@ -295,8 +295,8 @@ var api = {
 		tick = 0,
 		ingY = $._h / 2 + 200;
 		$.ctx.translate($._w, $._h);
-		$.ctx.fillStyle = '#000'
 		function loop() {
+			$.ctx.fillStyle = '#000'
 			$.ctx.fillRect(-$._w, -$._h, $.w, $.h)
 			$.ctx.drawImage($.img[3], -$._w, -$._h, $.w, $.h)
 			var angle = tick / 8,
