@@ -201,12 +201,12 @@ var api = {
 		]
 		var obstacle = [
 			'./images/g0.png',
-			'./images/g1.jpg',
-			'./images/g2.jpg',
-			'./images/g3.jpg',
+			'./images/g1.png',
+			'./images/g2.png',
+			'./images/g3.png',
 			'./images/g4.jpg',
-			'./images/g5.jpg',
-			'./images/g6.jpg',
+			'./images/g5.png',
+			'./images/g6.png',
 		]
 		$.dataLength = music.length + img.length + obstacle.length
 		for (var i = 0; i < music.length; i++) {
