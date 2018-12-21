@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>super LED</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+		body{
+			font-size: 14px;
+			padding: 20px;
+			font-family: arial;
+		}
+		@font-face{
+			font-family: "楷体";
+			src: url('./font/楷体.ttf')
+		}
+		@font-face{
+			font-family: "LED";
+			src: url('./font/LED.ttf')
+		}
+		@font-face{
+			font-family: "simhei";
+			src: url('./font/simhei.ttf')
+		}
+		@font-face{
+			font-family: "方正启用简体";
+			src: url('./font/方正启用简体.TTF')
+		}
+		@font-face{
+			font-family: "焦子博枯枝体";
+			src: url('./font/焦子博枯枝体.ttf')
+		}
+		@font-face{
+			font-family: "汉真广标";
+			src: url('./font/汉真广标.ttf')
+		}
+		@font-face{
+			font-family: "华文行楷";
+			src: url('./font/华文行楷.ttf')
+		}
+		@font-face{
+			font-family: "华文琥珀";
+			src: url('./font/华文琥珀.ttf')
+		}
+		@font-face{
+			font-family: "金梅浪漫豆豆体";
+			src: url('./font/金梅浪漫豆豆体.ttf')
+		}
+		@font-face{
+			font-family: "宋体";
+			src: url('./font/宋体.ttc')
+		}
+		@font-face{
+			font-family: "微软雅黑粗体";
+			src: url('./font/微软雅黑粗体.ttf')
+		}
+		@font-face{
+			font-family: "文鼎中特廣告體";
+			src: url('./font/文鼎中特廣告體.ttf')
+		}
+		@font-face{
+			font-family: "中國龍海行書";
+			src: url('./font/中國龍海行書.TTF')
+		}
+		ul{
+			list-style: none;
+		}
+		ul li{
+			width: 100%;
+			margin-bottom: 15px;
+		}
+		ul li span{
+			display: inline-block;
+			width: 36px;
+		}
+		ul li select{
+			width: 140px;
+			padding: 5px 0;
+		}
+		ul li input[type=range]{
+			width: 72%;
+			position: relative;
+			top: 5px;
+			margin-right: 5px;
+		}
+		ul li textarea{
+			width: 100%;
+			padding: 5px;
+		}
+		ul li button{
+			padding: 7px 18px;
+		}
+		#canvas{
+			display: none;
+			border: none;
+		}
+	</style>
+</head>
+<body>
+	<ul>
+		<li>
+			<span>字体:</span>
+			<select id="font">
+				<option value="sans-serif">sans-serif</option>
+				<option value="微软雅黑粗体">微软雅黑粗体</option>
+				<option value="宋体">宋体</option>
+				<option value="楷体">楷体</option>
+				<option value="方正启用简体">方正启用简体</option>
+				<option value="焦子博枯枝体">焦子博枯枝体</option>
+				<option value="汉真广标">汉真广标</option>
+				<option value="华文行楷">华文行楷</option>
+				<option value="华文琥珀">华文琥珀</option>
+				<option value="中國龍海行書">中國龍海行書</option>
+				<option value="金梅浪漫豆豆体">金梅浪漫豆豆体</option>
+				<option value="文鼎中特廣告體">文鼎中特廣告體</option>
+				<option value="LED">LED</option>
+				<option value="simhei">simhei</option>
+			</select>
+		</li>
+		<li>
+			<span>背景:</span>
+			<input id="bgColor" type="color" value="#000000">
+		</li>
+		<li>
+			<span>字色:</span>
+			<input id="color" type="color" value="#ff0000">
+		</li>
+		<li>
+			<span>字号:</span>
+			<input id="size" type="range" value="50" min="10" max="500">
+			<span id="sizeValue">50</span>
+		</li>
+		<li>
+			<span>粗细:</span>
+			<input id="weight" type="range" value="3" max="9" min="1">
+			<span id="weightValue">300</span>
+		</li>
+		<li>
+			<span>影色:</span>
+			<input id="shadowColor" type="color" value="#ff0000">
+		</li>
+		<li>
+			<span>阴影:</span>
+			<input id="shadow" type="range" value="0">
+			<span id="shadowValue">0</span>
+		</li>
+		<li>
+			<span>速度:</span>
+			<input id="speed" type="range" value="20" min="1" max="100">
+			<span id="speedValue">20</span>
+		</li>
+		<li>
+			<span>Text:</span>
+			<label><input name="text" type="radio" value="0" checked>&nbsp;fillText&nbsp;</label>
+			<label><input name="text" type="radio" value="1">&nbsp;strokeText</label>
+		</li>
+		<li>
+			<p>内容:</p>
+			<textarea id="text" rows="5"></textarea>
+		</li>
+		<li>
+			<button id="start" type="button">开始</button>
+		</li>
+	</ul>
+	<canvas id="canvas">error</canvas>
+<script>
+	window.requestAnimFrame = (function (callback) {
+	    return window.requestAnimationFrame ||
+	        window.webkitRequestAnimationFrame ||
+	        window.mozRequestAnimationFrame ||
+	        window.oRequestAnimationFrame ||
+	        window.msRequestAnimaitonFrame ||
+	        function (callback) {
+	            window.setTimeout(callback, 16.7)
+	        }
+	})()
+
+	function $(id) {
+		var target = document.querySelector(id)
+		target.addEvent = function (event, fn, f) {
+			this.addEventListener(event, fn, f)
+		}
+		return target
+	}
+
+	$.flag = 1
+	$.w = window.screen.width
+	$.h = window.screen.height
+	$.y = -$.w / 2
+
+	function getData() {
+		return {
+			size: $('#size').value,
+			font: $('#font').value,
+			color: $('#color').value,
+			speed: $('#speed').value / 10,
+			text: $('#text').value,
+			weight: $('#weight').value * 100,
+			bgColor: $('#bgColor').value,
+			shadow: $('#shadow').value,
+			shadowColor: $('#shadowColor').value
+		}
+	}
+
+	function canvas() {
+		var d = getData()
+		var ca = $('#canvas')
+		ca.style.display = 'block'
+		ca.width = $.w
+		ca.height = $.h
+
+		var c = ca.getContext('2d')
+		c.translate($.w / 2, 0)
+		c.rotate(90 * Math.PI / 180)
+		c.font = d.weight + ' ' + d.size + 'px ' + d.font
+		c.textBaseline = 'middle'
+
+		if (d.shadow) {
+			c.shadowBlur = d.shadow
+			c.shadowColor = d.shadowColor
+		}
+
+		$.textW = c.measureText(d.text).width
+		$.moveX = $.h
+
+		function draw() {
+			c.fillStyle = d.bgColor
+			c.fillRect(0, $.y, $.h, $.w)
+			c.fillStyle = d.color
+			$.moveX -= d.speed
+			c.fillText(d.text, $.moveX, 0)
+			if ($.moveX < - $.textW) {
+				$.moveX = $.h
+			}
+			$.flag && requestAnimationFrame(draw)
+		}
+
+		function draw2() {
+			c.fillStyle = d.bgColor
+			c.fillRect(0, $.y, $.h, $.w)
+			c.strokeStyle = d.color
+			$.moveX -= d.speed
+			c.strokeText(d.text, $.moveX, 0)
+			if ($.moveX < - $.textW) {
+				$.moveX = $.h
+			}
+			$.flag && requestAnimationFrame(draw2)
+		}
+
+		if (document.querySelectorAll('input[name="text"]:checked')[0].value == 0) {
+			draw()
+		} else {
+			draw2()
+		}
+	}
+
+	window.onload = function() {
+
+		$('#start').addEvent('click', function() {
+			if (!$('#text').value) {
+				alert('请输入内容！')
+				return false
+			}
+			$.flag = 1
+			canvas()
+			($('#canvas').requestFullScreen ? $('#canvas').requestFullScreen() : $('#canvas').webkitRequestFullScreen())
+			// (document.documentElement.requestFullScreen || document.documentElement.webkitRequestFullScreen).call($('#content'))
+		}, false)
+	
+		$('#canvas').addEvent('click', function() {
+			$.flag = 0
+			$('#canvas').style.display = 'none'
+			document.exitFullscreen ? document.exitFullscreen() : document.webkitCancelFullScreen()
+		}, false)
+	
+		$('#size').addEvent('change', function() {
+			$('#sizeValue').innerText = this.value
+		}, false)
+		
+		$('#weight').addEvent('change', function() {
+			$('#weightValue').innerText = this.value  * 100
+		}, false)
+	
+		$('#speed').addEvent('change', function() {
+			$('#speedValue').innerText = this.value
+		}, false)
+
+		$('#shadow').addEvent('change', function() {
+			$('#shadowValue').innerText = this.value
+		}, false)
+	}
+</script>
+</body>
+</html>
